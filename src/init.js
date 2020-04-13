@@ -5,13 +5,13 @@ module.exports = () => {
 
     const app = express();
 
-    mongoose.connect('mongodb://localhost:27017/admin',
+    mongoose.connect('mongodb://root:root@mongo:27017/admin',
         {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
         .then(() => console.log('Connexion à MongoDB réussie !'))
-        .catch(() => console.log('Connexion à MongoDB échouée !'));
+        .catch((e) => console.log(e));
 
     app.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
