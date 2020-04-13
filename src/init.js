@@ -1,3 +1,9 @@
+require('dotenv').config();
+
+const password = process.env.PASSWORD;
+const username = process.env.USERNAME;
+const port = process.env.MONGODB_PORT;
+
 module.exports = () => {
 
     const mongoose = require('mongoose');
@@ -5,13 +11,13 @@ module.exports = () => {
 
     const app = express();
 
-    mongoose.connect('mongodb://root:root@mongo:27017/admin',
+    mongoose.connect(`mongodb://${username}:${password}@mongo:${port}/admin`,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
         .then(() => console.log('Connexion à MongoDB réussie !'))
-        .catch((e) => console.log(e));
+        .catch(() => console.log('Connexion à MongoDB échouée !'));
 
     app.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,4 +27,3 @@ module.exports = () => {
     });
 
 };
-
