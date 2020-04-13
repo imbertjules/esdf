@@ -1,11 +1,13 @@
-const recipesController = require('../controllers/recipesController');
+const recipesController = require('../controllers/recipesController').RecipesController;
+
+let ctrl = new recipesController();
 
 module.exports = (app) => {
     app.route('/api/customers')
-        .get(recipesController.allRecipes);
+        .get(ctrl.allRecipes);
 
     app.route('/api/customers/:_id')
-        .delete(recipesController.deleteRecipes);
+        .delete(ctrl.deleteRecipes);
 
     console.log('register routes');
 };
