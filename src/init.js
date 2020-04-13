@@ -1,3 +1,7 @@
+require('dotenv').config();
+const password = process.env.PASSWORD;
+const username = process.env.USERNAME;
+
 module.exports = () => {
 
     const mongoose = require('mongoose');
@@ -5,7 +9,7 @@ module.exports = () => {
 
     const app = express();
 
-    mongoose.connect('mongodb://localhost:27017/admin',
+    mongoose.connect(`mongodb:@${username}:${password}//localhost:27017/admin`,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true

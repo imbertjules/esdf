@@ -1,6 +1,5 @@
 const recipesController = require('../controllers/recipesController');
-const express = require('express');
-const app = express();
+
 
 app.route('/api/customers')
     .get(recipesController.allRecipes);
